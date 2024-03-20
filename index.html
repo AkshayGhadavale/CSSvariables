@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    :root{
+        --base:yellow;
+        --spacing:0px;
+        --blur:0px;
+        --radius:0px;
+    }
+    .controls{
+        width: 100%;
+  height: 10vh;
+        background-color: gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        gap: 20px;
+        z-index: 999;
+     
+    }
+    .imgsec{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+          height: 50px;
+          width: 100%;
+          height: 90vh;
+          z-index: -9;
+    }
+img{
+    padding: var(--spacing);
+    background:var(--base);
+    filter: blur(var(--blur));
+    border-radius: var(--radius);
+    z-index: -9;
+    width: 300px;
+}
+
+
+</style>
+<body>
+  
+    <div class="controls">
+        <label for="spacing">Spacing:</label>
+        <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    
+        <label for="blur">Blur:</label>
+        <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+        <label for="radius">border-radius:</label>
+        <input id="radius" type="range" name="radius" min="0" max="100" value="10" data-sizing="px">
+    
+        <label for="base">Base Color</label>
+        <input id="base" type="color" name="base" value="#ffc600">
+      </div>
+      <div class="imgsec">
+    
+      <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+    </div>
+    <script>
+
+const contro = document.querySelectorAll('.controls input');
+
+function chnagesdone(){
+  const sufdata=this.dataset.sizing || '';
+  console.log(sufdata)
+console.log(this.value)
+  document.documentElement.style.setProperty(`--${this.name}`,this.value + sufdata)
+}
+
+contro.forEach(input => input.addEventListener('change',chnagesdone));
+
+
+    </script>
+</body>
+</html>
